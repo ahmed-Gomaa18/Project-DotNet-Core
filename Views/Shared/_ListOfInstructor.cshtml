@@ -1,0 +1,31 @@
+﻿@model List<Instructor>
+
+@if (Model.Count() < 1)
+{
+    <h1> Empty </h1>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <tr class="bg-secondary text-white">
+            <th> Instructor Name</th>
+            <th> Address</th>
+            <th> salary</th>
+            <th> Image </th>
+
+
+        </tr>
+
+        @foreach (var instructor in Model)
+        {
+            <tr>
+
+                <td> @instructor.Name </td>
+                <td> @(@instructor.Address != null ? @instructor.Address : "Hide") </td>
+                <td> @instructor.Salary </td>
+                <td> @(@instructor.Image != null ? @instructor.Image : "defualt.jpg") </td>
+            
+            </tr>
+        }
+    </table>
+}

@@ -1,0 +1,88 @@
+﻿@model Instructor
+
+@{
+    ViewData["Title"] = "Edit - Instructor";
+
+    SelectList DeptsList = new SelectList(ViewBag.depts, "ID", "Name", Model.DepartmentID);
+}
+
+
+<h2 class="text-center p-3"
+    style="
+        color: #607D8B;
+        font-family: math;
+        font-weight: 1000;
+        border: 1px solid;
+        width: max-content;
+        border-radius: 8px;
+        margin-right: auto;
+        margin-left: auto;
+    ">
+    Edit Instructor
+</h2>
+
+<div class="row d-flex align-items-center pt-1">
+
+    <div class="col-6">
+
+        <img src="~/Images/Social_update.png" width="100%" />
+
+    </div>
+
+    <div class="col-6">
+        <form method="post" asp-action="SaveEdit" asp-controller="Instructor" asp-route-id="@Model.ID" >
+            <div>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span style="color: red" asp-validation-for="Name"></span>
+            </div>
+            <input asp-for="ID" type="hidden" class="form-control" />
+            <div>
+                <label asp-for="Address"></label>
+                <input asp-for="Address" class="form-control" />
+                <span style="color: red" asp-validation-for="Address"></span>
+            </div>
+
+            <div>
+                <label asp-for="Salary"></label>
+                <input asp-for="Salary" class="form-control" />
+                <span style="color: red" asp-validation-for="Salary"></span>
+            </div>
+
+            <div>
+                <label asp-for="Image"></label>
+                <input asp-for ="Image" class="form-control" />
+                <span style="color: red" asp-validation-for="Image"></span>
+            </div>
+
+            <div>
+                <label asp-for="DepartmentID"></label>
+                <select asp-for="DepartmentID" asp-items="DeptsList" class="form-control">
+
+                </select>
+                <span style="color: red" asp-validation-for="DepartmentID"></span>
+
+            </div>
+
+            <input type="submit" class="btn btn-success mt-3" value="Save" />
+
+        </form>
+
+        <a asp-action="Index" asp-controller="Instructor" class="btn btn-primary mt-3"> Back To All Instructors </a>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+@section Scripts{
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

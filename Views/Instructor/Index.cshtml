@@ -1,0 +1,73 @@
+﻿@model List<Instructor>
+@{
+    ViewData["Title"] = "Instructors";
+    //Layout = "_MyLayout";
+}
+
+
+<!-- Strong Type View -->
+<!-- List Department -->
+
+<h2 class="text-center p-3"
+    style="
+        color: #607D8B;
+        font-family: math;
+        font-weight: 1000;
+        border: 1px solid;
+        width: max-content;
+        border-radius: 8px;
+        margin-right: auto;
+        margin-left: auto;
+    ">
+    All Instructors
+</h2>
+
+<table class="table table-striped table-hover">
+    <tr class="bg-dark text-white">
+        <th> ID</th>
+        <th> Instructor Name</th>
+        <th> Address</th>
+        <th> salary</th>
+        <th> Image </th>
+        <th> Department Name</th>
+        <th> View</th>
+        <th> Edit</th>
+        <th> Delete</th>
+
+
+    </tr>
+    @foreach (var instructor in Model)
+    {
+        <tr>
+            <td> @instructor.ID </td>
+            <td> @instructor.Name </td>
+            <td> @(@instructor.Address != null ? @instructor.Address : "Hide") </td>
+            <td> @instructor.Salary $</td>
+            <td> @(@instructor.Image != null ? @instructor.Image : "defualt.jpg") </td>
+            <td> @(@instructor.Department != null ? @instructor.Department.Name : "Department") </td>
+            <td class="text-center"> <a href="\Instructor\Details\@instructor.ID" class="btn btn-info text-white">View</a> </td>
+            <td class="text-center"> <a href="\Instructor\Edit\@instructor.ID" class="btn btn-success text-white">Edit</a> </td>
+            <td class="text-center">
+                <a href="\Instructor\Delete\@instructor.ID"
+                class="btn btn-danger text-white"
+                onclick="confirmDelete()"
+                >Delete</a> 
+            </td>
+
+        </tr>
+    }
+</table>
+
+<a asp-action="Add" asp-controller="Instructor" class="btn btn-success">Add New Instructor</a>
+
+@section Scripts{
+    <script>
+        function confirmDelete(){
+            var confirm = window.confirm("Are You Sure You Want To Delete This Instructor ?.");
+            console.log(confirm);
+            if(!confirm){
+                event.preventDefault();
+            }
+        }
+    </script>
+}
