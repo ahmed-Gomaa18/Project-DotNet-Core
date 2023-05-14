@@ -24,10 +24,15 @@ namespace Project.Services
         public int Update(int id, Department department)
         {
             Department dept = getById(id);
-            dept.Manager = department.Manager;
+            if(dept != null)
+            {
+                dept.Manager = department.Manager == null ? dept.Manager : department.Manager;
 
-            int RES = context.SaveChanges();
-            return RES;
+                int RES = context.SaveChanges();
+                return RES;
+            }
+
+            return 0;
         }
         public int Delete(int id)
         {

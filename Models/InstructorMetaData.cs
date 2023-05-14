@@ -19,9 +19,9 @@ namespace Project.Models
         [Required]
         [Display(Name = "Instructor Name")]
         public string Name { get; set; }
-        //[DataType(DataType.EmailAddress)]
+      
         [MinLength(5, ErrorMessage = "Length Of Address Must be More Than 5 Char.")]
-        //[Required]
+        // Custom Validation
         [ValidateAddress]
         public string Address { get; set; }
         [Range(1000, 30000)]

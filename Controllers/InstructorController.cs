@@ -61,7 +61,7 @@ namespace Project.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            // AsSingleQuery() Better Pereformance
+            
             List<Instructor> Instructors = instructorRepo.getAllWithDepartments();
             
             return View("index", Instructors);

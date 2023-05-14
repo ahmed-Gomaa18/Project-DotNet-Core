@@ -4,15 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Project.Models
 {
-    public partial class Department
+    public class Category
     {
         public int ID { get; set; }
+        [Required, MinLength(3, ErrorMessage="MinLength Of Category is Three Char.")]
         public string Name { get; set; }
-        public string? Manager { get; set; }
-        public virtual ICollection<Instructor> Instructors { get; set; }
+        public string Description { get; set; }
 
-        //public virtual List<Trainee> Traines { get; set; }
 
+        public virtual ICollection<Employee> Employees { get; set; }
     }
-
 }

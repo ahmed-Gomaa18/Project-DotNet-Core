@@ -1,0 +1,72 @@
+﻿@model List<Employee>
+@{
+    ViewData["Title"] = "Employee";
+}
+
+
+<h2 class="text-center p-3"
+    style="
+        color: #607D8B;
+        font-family: math;
+        font-weight: 1000;
+        border: 1px solid;
+        width: max-content;
+        border-radius: 8px;
+        margin-right: auto;
+        margin-left: auto;
+    ">
+    All Employees
+</h2>
+
+<table class="table table-striped table-hover">
+    <tr class="bg-dark text-white">
+        <th> ID</th>
+        <th> Employee Name</th>
+        <th> Address</th>
+        <th> salary</th>
+        <th> Level </th>
+        <th> Gender </th>
+        <th> Category Name</th>
+        <th> View</th>
+        <th> Edit</th>
+        <th> Delete</th>
+
+
+    </tr>
+    @foreach (var employee in Model)
+    {
+        <tr>
+            <td> @employee.ID </td>
+            <td> @employee.Name </td>
+            <td> @employee.Address </td>
+            <td> @employee.Salary $ </td>
+            <td> @employee.Level </td>
+            <td> @employee.Gender </td>
+            <td> @employee.Category.Name </td>
+
+
+            <td class="text-center"> <a href="\Employee\Details\@employee.ID" class="btn btn-info text-white">View</a> </td>
+            <td class="text-center"> <a href="\Employee\Edit\@employee.ID" class="btn btn-success text-white">Edit</a> </td>
+            <td class="text-center">
+                <a href="\Employee\Delete\@employee.ID"
+                   class="btn btn-danger text-white"
+                   onclick="confirmDelete()">Delete</a>
+            </td>
+
+        </tr>
+    }
+</table>
+
+<a asp-action="Add" asp-controller="Employee" class="btn btn-success">Add New Employee</a>
+
+@section Scripts{
+    <script>
+        function confirmDelete() {
+            var confirm = window.confirm("Are You Sure You Want To Delete This Employee ?.");
+            console.log(confirm);
+            if (!confirm) {
+                event.preventDefault();
+            }
+        }
+    </script>
+}

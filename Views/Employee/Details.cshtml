@@ -1,0 +1,18 @@
+﻿@model Employee
+
+@{
+    ViewData["Title"] = "Details - Employee";
+}
+<!-- Strong Type View -->
+<!-- List Department -->
+
+<div>
+    <h1>Name: @Model.Name</h1>
+    <h2>Category: @Model.CategoryID</h2>
+    <h3>Address: @Model.Address</h3>
+    <h4>Salary: @Model.Salary$</h4>
+    <h4>Level: @Model.Level</h4>
+    <h4>Gender: @Model.Gender</h4>
+
+</div>
+<a asp-action="Index" asp-controller="Employee" asp-fragment="" class="btn btn-primary mt-3"> Back To All Employees </a>

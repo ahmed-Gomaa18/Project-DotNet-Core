@@ -17,8 +17,11 @@ namespace Project.Models
         public DbSet<Department> Departments { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
 
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
-        // Optional 
+
+        // Optional
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Test_System;Integrated Security=True");

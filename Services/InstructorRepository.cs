@@ -26,6 +26,7 @@ namespace Project.Services
 
         public List<Instructor> getAllWithDepartments()
         {
+            // AsSingleQuery() Better Pereformance
             return context.Instructors.AsSingleQuery().Include(i => i.Department).ToList();
         }
 
@@ -45,14 +46,21 @@ namespace Project.Services
         {
             Instructor inst = getById(id);
 
-            inst.Name = NewInst.Name;
-            inst.Address = NewInst.Address;
-            inst.Image = NewInst.Image;
-            inst.Salary = NewInst.Salary;
-            inst.DepartmentID = NewInst.DepartmentID;
+            if (inst != null)
+            {
+                inst.Name = NewInst.Name == null ? inst.Name : NewInst.Name;
+                inst.Address = NewInst.Address == null ? inst.Address : NewInst.Address;
+                inst.Image = NewInst.Image == null ? inst.Image : NewInst.Image;
+                inst.Salary = NewInst.Salary == 0 ? inst.Salary : NewInst.Salary;
+                inst.DepartmentID = NewInst.DepartmentID == 0 ? inst.DepartmentID : NewInst.DepartmentID;
+                
+                int RES = context.SaveChanges();
+                return RES;
+            }
 
-            int RES = context.SaveChanges();
-            return RES;
+            return 0;
+
+
         }
 
         public int Delete(int id)

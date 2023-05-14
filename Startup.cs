@@ -28,9 +28,6 @@ namespace Project
         {   
             services.AddControllersWithViews();
 
-            // Framework Services
-            // built-in Services
-
             // Configur Database
             services.AddDbContext<Context>(
                 options => options.UseSqlServer
@@ -52,6 +49,9 @@ namespace Project
             // Add My Classes To Ioc Container to enable (resolve) Inject when need it
             services.AddScoped<IInstructorRepository, InstructorRepository>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
         }
 
